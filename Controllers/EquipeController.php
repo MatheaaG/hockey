@@ -25,7 +25,7 @@ class EquipeController extends Controller
         $query = $queryBase->getQuery();
         $villes = $query->getResult();
 
-        echo $this->twig->render('equipe/create_view.php', ['villes' => $villes, 'session' => $params ['session']]);
+        echo $this->twig->render('equipe/create_view.php', ['villes' => $villes]);
     }
 
     #[Role('ADMIN')]
@@ -62,13 +62,13 @@ class EquipeController extends Controller
         $query = $queryBase->getQuery();
         $equipes = $query->getResult();
         
-        echo $this->twig->render('equipe/list_view.php', ['equipes'=> $equipes, 'session' => $params ['session']]);
+        echo $this->twig->render('equipe/list_view.php', ['equipes'=> $equipes]);
 
     }
 
     #[Role('ADMIN')]
     public function read($params){
-        $id=$params["getParams"]["id"];
+        $id=$params["get"]["id"];
         $em=$params["em"];
         
         $queryBase= $em->createQueryBuilder();
@@ -84,12 +84,12 @@ class EquipeController extends Controller
         $equipe = $em->find("Equipe", $id);
         //var_dump($joueur);die;
         
-        echo $this->twig->render('equipe/read_view.php',['joueurs' => $joueur, 'equipe' => $equipe, 'session' => $params ['session']]);
+        echo $this->twig->render('equipe/read_view.php',['joueurs' => $joueur, 'equipe' => $equipe]);
     }
 
     #[Role('ADMIN')]
     public function edit($params){
-        $id=$params["getParams"]["id"];
+        $id=$params["get"]["id"];
         $em=$params["em"];
         $queryBase= $em->createQueryBuilder();
         $queryBase ->select('v')
@@ -100,13 +100,13 @@ class EquipeController extends Controller
 
         $equipe = $em->find('Equipe', $id);
 
-        echo $this->twig->render('equipe/edit_view.php', ['equipe' => $equipe,'villes'=>$villes, 'session' => $params ['session']]); 
+        echo $this->twig->render('equipe/edit_view.php', ['equipe' => $equipe,'villes'=>$villes]); 
     }
 
     #[Role('ADMIN')]
     public function update($params) {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $id = $params["getParams"]["id"];
+            $id = $params["get"]["id"];
             $em = $params["em"];
     
             // Récupérer les données du formulaire
@@ -137,7 +137,7 @@ class EquipeController extends Controller
     
     #[Role('ADMIN')]
     public function delete($params){
-        $id=$params["getParams"]["id"];
+        $id=$params["get"]["id"];
         $em=$params["em"];
 
         $equipe = $em->find('Equipe', $id);

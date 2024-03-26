@@ -26,6 +26,11 @@ class Calendrier
     #[ManyToOne(targetEntity: Ville::class)]
     #[JoinColumn(name:'ville_id', referencedColumnName: 'id')]
     private Ville|null $ville = null;
+    #[ORM\Column(type: 'integer')]
+    private int $score1;
+    #[ORM\Column(type: 'integer')]
+    private int $score2;
+
 
 
     /**
@@ -156,5 +161,53 @@ class Calendrier
     public function getVille()
     {
         return $this->ville;
+    }
+
+    /**
+     * Set score1.
+     *
+     * @param int $score1
+     *
+     * @return Calendrier
+     */
+    public function setScore1($score1)
+    {
+        $this->score1 = $score1;
+
+        return $this;
+    }
+
+    /**
+     * Get score1.
+     *
+     * @return int
+     */
+    public function getScore1()
+    {
+        return $this->score1;
+    }
+
+    /**
+     * Set score2.
+     *
+     * @param int $score2
+     *
+     * @return Calendrier
+     */
+    public function setScore2($score2)
+    {
+        $this->score2 = $score2;
+
+        return $this;
+    }
+
+    /**
+     * Get score2.
+     *
+     * @return int
+     */
+    public function getScore2()
+    {
+        return $this->score2;
     }
 }

@@ -1,4 +1,4 @@
-{#{% set isLogged = app.session.get('Logged') is defined and app.session.get('Logged') %}#}
+
 <!DOCTYPE html>
 
 <html lang="fr">
@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Permanent+Marker&display=swap" rel="stylesheet">
-    
     <title>LaCrosseEnFolie</title>
 </head>
 <body>
@@ -29,7 +28,8 @@
                 <li><a href="?c=ville&t=read">Villes</a></li>
                 <li><a href="?c=user&t=list">Utilisateurs</a></li>
               </ul>
-              {% if session %}
+              
+              {% if session['Logged'] %}
               <a href="?c=user&t=logout" id="session" style ="text-decoration: none; color: white;">Déconnexion</a>
               {% else %}
               <a href="?c=user&t=logout" id="session" style="text-decoration: none; color: white;">Connexion</a>

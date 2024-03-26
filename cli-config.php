@@ -59,7 +59,7 @@ foreach ($reflection->getMethods() as $method) {
     if ($target == $method->getName()) {
         $attributes = $method->getAttributes(\Controllers\Role::class);
         foreach ($attributes as $attribute) {
-            //echo $attribute->getName();
+            
             if("Controllers\Role"==$attribute->getName()) {
                 switch ($attribute->getArguments()[0]) { 
                     case "Anonym" :

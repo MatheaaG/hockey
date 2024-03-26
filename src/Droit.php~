@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping\ManyToOne;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'roles')]
-class Role
+class Droit
 {
     #[ORM\Id]
     #[ORM\Column(type: 'integer')]

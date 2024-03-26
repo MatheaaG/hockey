@@ -26,6 +26,11 @@ class Calendrier
     #[ManyToOne(targetEntity: Ville::class)]
     #[JoinColumn(name:'ville_id', referencedColumnName: 'id')]
     private Ville|null $ville = null;
+    #[ORM\Column(type: 'integer')]
+    private int $score1;
+    #[ORM\Column(type: 'integer')]
+    private int $score2;
+
 
 
     /**

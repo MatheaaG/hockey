@@ -26,8 +26,11 @@
         <option value={{ville.id}}>{{ville.nameCity}}</option>
         {% endfor %}
       </select>
+     
     Date et Heure de la rencontre : <input type="datetime-local" id="dateTime" name="dateTime" required />
     Prix : <input type="number" id="prix" name="prix"/>
+    Score équipe 1<input type="number" id="score1" name="score1"></input>
+    Score équipe 2<input type="number" id="score2" name="score2"></input>
     <input type="submit" value='Enregistrer' >
 </form>
 </div>

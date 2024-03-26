@@ -47,22 +47,13 @@ class UserController extends Controller
 
                 $_SESSION['Logged']=true;
                 $_SESSION['user_id'] = $user->getId(); // Stocker uniquement l'ID de l'utilisateur
-                //$_SESSION['user']=$user;
-                //if ($user->getRole()->getRoleName() === 'SUPERADMIN' || $user->getRole()->getRoleName() === 'ADMIN'){
+               
                 $urlRedirection = 'cli-config.php?c=equipe&t=list';
-                echo 'step0';
                 header("Location: $urlRedirection");
                 exit();
-               /* } else {
-                    $urlRedirection = '?c=user&t=login&message=Pas les permissions.';
-                    header("Location: $urlRedirection");
-                    exit();  
-                }*/
-
             }
             else {
                 $_SESSION['Logged']=false;
-                echo 'step1';die;
                 $urlRedirection = '?c=user&t=login&message=Mot de passe incorrect';
                 header("Location: $urlRedirection");
                 exit();    
@@ -71,7 +62,6 @@ class UserController extends Controller
         else {
             $user=null;
             $_SESSION['Logged']=false;
-            echo 'step2';die;
             $urlRedirection = "?c=user&t=login&message=Cet utilisateur n'existe pas";
             header("Location: $urlRedirection");
             exit();    
@@ -91,7 +81,7 @@ class UserController extends Controller
        
         $users = $query->getResult();
         
-        echo $this->twig->render('user/list_view.php', ['connectUser' =>   $connectUser,'users'=>$users, 'session' => $params ['session']]);
+        echo $this->twig->render('user/list_view.php', ['connectUser' =>   $connectUser,'users'=>$users]);
         
     }
 
@@ -100,13 +90,13 @@ class UserController extends Controller
         $em=$params["em"];
         
         $queryBase= $em->createQueryBuilder();
-        $queryBase ->select('r')
-            ->from('Role', 'r');
+        $queryBase ->select('d')
+            ->from('Droit', 'd');
 
         $query = $queryBase->getQuery();
         $roles = $query->getResult();
 
-        echo $this->twig->render('user/create.php', ['roles' => $roles, 'session' => $params ['session']]);
+        echo $this->twig->render('user/create.php', ['roles' => $roles]);
     }
 
     #[Role('ADMIN')]
@@ -115,7 +105,7 @@ class UserController extends Controller
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $em=$params["em"];
            
-            $role = $em->find("Role", $_POST['role_id']);
+            $role = $em->find("Droit", $_POST['role_id']);
             $lastName = $_POST["nom"]; 
             $firstName = $_POST["prenom"]; 
             $login = $_POST["login"];
@@ -146,25 +136,25 @@ class UserController extends Controller
  
     #[Role('ADMIN')]
     public function edit($params){
-        $id=$params["getParams"]["id"];
+        $id=$params["get"]["id"];
         $em=$params["em"];
        
         $queryBase= $em->createQueryBuilder();
-        $queryBase ->select('r')
-            ->from('Role', 'r');
+        $queryBase ->select('d')
+            ->from('Droit', 'd');
 
         $query = $queryBase->getQuery();
         $roles = $query->getResult();
 
         $user = $em->find('User', $id);
 
-        echo $this->twig->render('user/edit_view.php', ['user' => $user, 'roles' => $roles, 'session' => $params ['session']]); 
+        echo $this->twig->render('user/edit_view.php', ['user' => $user, 'roles' => $roles]); 
     }
 
     #[Role('ADMIN')]
     public function update($params) {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $id = $params["getParams"]["id"];
+            $id = $params["get"]["id"];
             $em = $params["em"];
     
             // Récupérer les données du formulaire
@@ -191,7 +181,7 @@ class UserController extends Controller
     
             
             // Charger l'entité role correspondante
-            $role = $em->find("Role", $roleID);
+            $role = $em->find("Droit", $roleID);
 
             // Mettre à jour les champs de l'entité User 
             $newUser->setNom($lastName);
@@ -215,7 +205,7 @@ class UserController extends Controller
     
     #[Role('ADMIN')]
     public function delete($params){
-        $id = $params["getParams"]["id"];
+        $id = $params["get"]["id"];
         $em = $params["em"];
     
         // Récupérer l'utilisateur

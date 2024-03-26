@@ -23,7 +23,7 @@ class JoueurController extends Controller
         $query = $queryBase->getQuery();
         $equipes = $query->getResult();
         
-        echo $this->twig->render('joueurs/create_view.php', ['equipes' => $equipes, 'session' => $params ['session']]);
+        echo $this->twig->render('joueurs/create_view.php', ['equipes' => $equipes]);
     }
 
     #[Role('ADMIN')]
@@ -73,7 +73,7 @@ class JoueurController extends Controller
         $query = $queryBase->getQuery();
         $joueurs = $query->getResult();
         
-        echo $this->twig->render('joueurs/list_view.php', ['joueurs'=> $joueurs, 'session' => $params ['session']]);
+        echo $this->twig->render('joueurs/list_view.php', ['joueurs'=> $joueurs]);
 
     }
 
@@ -90,7 +90,7 @@ class JoueurController extends Controller
 
         $joueur = $em->find('Joueur', $id);
 
-        echo $this->twig->render('joueurs/edit_view.php', ['joueur' => $joueur, 'equipes' => $equipes, 'session' => $params ['session']]); 
+        echo $this->twig->render('joueurs/edit_view.php', ['joueur' => $joueur, 'equipes' => $equipes]); 
     }
 
     #[Role('ADMIN')]

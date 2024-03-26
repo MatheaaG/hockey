@@ -17,7 +17,7 @@ class VilleController extends Controller
         $query = $queryBase->getQuery();
         $villes = $query->getResult();
 
-        echo $this->twig->render('villes/create_view.php', ['villes' => $villes, 'session' => $params ['session']]);   
+        echo $this->twig->render('villes/create_view.php', ['villes' => $villes]);   
     }
     
     #[Role('ADMIN')]
@@ -31,13 +31,13 @@ class VilleController extends Controller
         $query = $queryBase->getQuery();
         $villes= $query->getResult();
 
-        echo $this->twig->render('villes/list_view.php', ['villes'=> $villes, 'session' => $params ['session']]);
+        echo $this->twig->render('villes/list_view.php', ['villes'=> $villes]);
     }
 
     #[Role('ADMIN')]
     public function update($params) {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $id = $params["getParams"]["id"];
+            $id = $params["get"]["id"];
             $em = $params["em"];
     
             // Récupérer les données du formulaire
@@ -63,7 +63,7 @@ class VilleController extends Controller
 
     #[Role('ADMIN')]
     public function delete($params){
-        $id=$params["getParams"]["id"];
+        $id=$params["get"]["id"];
         $em=$params["em"];
 
         $ville = $em->find('Ville', $id);
@@ -99,12 +99,12 @@ class VilleController extends Controller
 
     #[Role('ADMIN')]
     public function edit($params){
-        $id=$params["getParams"]["id"];
+        $id=$params["get"]["id"];
         $em=$params["em"];
 
         $ville = $em->find('Ville', $id);
 
-        echo $this->twig->render('villes/edit_view.php', ["ville"=>$ville, 'session' => $params ['session']]);
+        echo $this->twig->render('villes/edit_view.php', ["ville"=>$ville]);
     }    
 }
 

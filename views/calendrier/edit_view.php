@@ -38,6 +38,8 @@
             <input type="datetime-local" id="dateTime" name="dateTime" />
         {% endif %}
         Prix : <input type="number" id="prix" name="prix" value="{{calendrier.prix}}"/>
+        Score équipe 1 : <input type="number" id="score1" name="score1" value="{{calendrier.score1}}"/>
+        Score équipe 2 : <input type="number" id="score2" name="score2" value="{{calendrier.score2}}"/>
         <input type="submit" value='Modifier' >
     </form>
 </div>
