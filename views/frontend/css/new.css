@@ -1,0 +1,89 @@
+.cadre {
+    display: none;
+    height: 500px;
+    border: 1px solid blue;
+    
+}
+
+.match {
+    border: 1px solid yellow;
+    height: 300px; 
+    display: flex;
+}
+
+.equipes {
+    border: 1px solid black;
+    height: 150px;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.date {
+    font-size: large;
+    margin-top: 10px;
+    text-align: center;
+}
+  
+.heure {
+text-align: center;
+}
+
+.button_detail {
+    border: 1px solid green;
+    margin: 15px;
+    height:150px;
+    text-align: center;
+}
+
+.button_detail button {
+    padding :8px;
+    border: 1px solid;
+    border-radius: 5px;
+    background-color: white;
+    color: black;
+}
+  
+.button_detail button:hover {
+cursor: pointer;
+width: 90px;
+height: 46px;
+font-weight: bold;
+}
+
+#col1 {
+    background-color: aqua;
+   
+}
+
+.equipe1 {
+    
+    text-align: center;
+  }
+  
+  .equipe2 {
+     
+   
+      text-align: center;
+     
+  }
+  .nomEquipe1, .nomEquipe2 {
+      text-align: center;
+      width: 170px;
+     /* margin: auto;*/
+  }
+  
+  .equipe1 img,
+  .equipe2 img {
+    width: 95px;
+    height: 100px;
+
+  
+  }
+
+  .score {
+    text-wrap: nowrap;
+    font-size:xx-large;
+    
+  }
